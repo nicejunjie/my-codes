@@ -1,0 +1,15 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <string>
+#include <stdlib.h>
+#include <sstream>
+#include <fstream>
+#include <stdio.h>
+#include <iomanip>
+#include <limits.h>
+//#include <utility> //for pair
+#include <bitset> //print binary numbers
+#include <boost/multiprecision/cpp_int.hpp>  //big integer lib
+// #include <unordered_map>
+

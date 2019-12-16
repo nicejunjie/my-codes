@@ -1,0 +1,5 @@
+#!/usr/bin/tcsh
+
+
+mpiCC  main-mpi.cpp keywords.cpp util-mpi.cpp build_frag.cpp readkey.cpp readin-mpi.cpp gen_sub.cpp  common.cpp check_job_type.cpp output.cpp goniom_run-mpi.cpp mpi_util.cpp  -o goniom-mpi.x 
+

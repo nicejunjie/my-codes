@@ -1,0 +1,6 @@
+
+keywords : keywords.cpp and keywords.h
+common variables, e.g. geometry, fragment vector, level of theories, headers, etc are at common.cpp and common.h
+text processing utilities are in util.cpp and util-mpi.cpp
+
+only 3 files are different for mpi: util-mpi.cpp , goniom_run-mpi.cpp and readin-mpi.cpp. 
