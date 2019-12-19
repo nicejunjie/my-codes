@@ -11,11 +11,11 @@ using namespace std;
 // read keywords
 
 //! before "key:" is comment
-//dipole | for dipole calculation. Turned off by default. 
-//charge | use background point charges. 
-//autosub| automatically generate subsystems.
-//debug | print additional debug informations
-//link  | add link atoms
+// dipole | for dipole calculation. Turned off by default. 
+// charge | use background point charges. 
+// autosub| automatically generate subsystems.
+// debug | print additional debug informations
+// link  | add link atoms
 // water or peptide| automatically determine the charge for fragments. 
 // admp|low-whole calculation will be done by the parent job.
 

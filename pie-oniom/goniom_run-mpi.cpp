@@ -32,19 +32,15 @@ string run(string cmd,string input,string outname) {
   const char *cmdstr;
   cmdstr=cmd.c_str();
 
-// ofstream outfile(outname);
  ofstream outfile(outname.c_str());   //for old c++ compiler
   outfile<<input;
   outfile.flush();
   outfile.close();
 
- while(res=="") {                         // for unknown reason, gaussian job will randomly fail to run during dynamics. rerun it if fails.
+ while(res=="") {    // for unknown reason, gaussian job will randomly fail to run during dynamics. rerun it if fails.
   if(!(in=popen(cmdstr,"r"))) gexit("fail to run popen"); 
   while(fgets(buff,sizeof(buff),in)) res+=buff;
  }
- // stringstream is(buff);
- // is>>res;
-// cout<<res<<endl;
   if(ifDebug) cout<<"finishing run"<<endl;
   if(ifDebug) cout<<res<<endl;
   return res;
@@ -53,7 +49,7 @@ string run(string cmd,string input,string outname) {
 
 //--------------------------
 string calc_chg(string str) {   // this needs to be moved to gen_sub.cpp
-// need to use harsh table in the future for simplicity. 
+// need to use hash table in the future for simplicity. 
   if(ifDebug) cout<<"debug in calc_chg"<<endl;
  string stmp;
  if(ifWater) {
@@ -69,29 +65,10 @@ string calc_chg(string str) {   // this needs to be moved to gen_sub.cpp
    return itos(n_O*c_O+n_H*c_H);
  }
  if(ifPeptide) { 
-// nasty. not working.
-   stringstream is(str);
-   int iatm = 0;
-   while(is>>stmp){
-      if(stmp=="O"||stmp=="8") ;
-      else if(stmp=="H"||stmp=="1") ;
-      else if(stmp=="C"||stmp=="6")  
-               if(connect[iatm].size()==3) { 
-                    int itmp=0;
-                    for(int j=0;j<3;j++)  { 
-                       int icon=connect[iatm][j];
-                       if(atmname[icon]=="O"||atmname[icon]=="8") itmp+=connect[icon].size();
-                    }
-                    if(itmp==2) return "-1";
-               }
-      else if(stmp=="N"||stmp=="7") if(connect[iatm].size()==4) return "1";
-      else if(stmp=="S"||stmp=="16") ;
-      else gexit("nyi");
-      is>>stmp;is>>stmp;is>>stmp; //skip coordinates[3]
-      iatm++;
+  // NYI
    }
    return "0";
- }
+ 
 }
 
 
@@ -198,7 +175,7 @@ for(int i=mpi_id+1;i<sub_subsys.size();i+=mpi_np) {
              }
            m*=2;
       }
-      if(ifLink) {          // read link atom forces if there is any.
+      if(ifLink) {          // read link atom forces if there is any. Forces are projected back onto D-A atoms. 
         for(int j=0;j<link_atom[i-1].size();j++) { 
              for(int k=0;k<3;k++) { 
                is>>f; 
@@ -269,7 +246,7 @@ MPI_Reduce(&pot,&pot_global,1,MPI_DOUBLE,MPI_SUM,0,MPI_COMM_WORLD);
 pot=pot_global;
 MPI_Reduce(force,force_global,3*natm,MPI_DOUBLE,MPI_SUM,0,MPI_COMM_WORLD);
 pot=pot_global;
-std::copy(force_global,force_global+3*natm,force);
+copy(force_global,force_global+3*natm,force);
 
 }
 
