@@ -1,0 +1,919 @@
+==3340== NVPROF is profiling process 3340, command: ./a.out
+==3340== Warning: Unified Memory Profiling is not supported on this device. System requirements for unified memory can be found at: http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#um-requirements
+==3340== Profiling application: ./a.out
+==3340== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 85.12%  1.94063s       400  4.8516ms  4.8470ms  4.8568ms  tf_only_58_gpu
+ 14.35%  327.11ms         1  327.11ms  327.11ms  327.11ms  tf_only_43_gpu
+  0.32%  7.2367ms        12  603.06us  1.5680us  2.7290ms  [CUDA memcpy HtoD]
+  0.22%  4.9474ms         5  989.48us  14.176us  2.5078ms  [CUDA memcpy DtoH]
+  0.00%  3.8080us         1  3.8080us  3.8080us  3.8080us  tf_only_39_gpu
+
+==3340== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 79.38%  2.27056s       403  5.6342ms  8.8350us  327.11ms  cuStreamSynchronize
+ 11.59%  331.52ms         1  331.52ms  331.52ms  331.52ms  cuDevicePrimaryCtxRetain
+  6.79%  194.14ms         1  194.14ms  194.14ms  194.14ms  cuDevicePrimaryCtxRelease
+  1.13%  32.427ms         1  32.427ms  32.427ms  32.427ms  cuMemHostAlloc
+  0.44%  12.464ms         1  12.464ms  12.464ms  12.464ms  cuMemFreeHost
+  0.25%  7.0504ms        13  542.34us  6.6680us  2.9767ms  cuMemAlloc
+  0.23%  6.7012ms       402  16.669us  14.190us  57.574us  cuLaunchKernel
+  0.13%  3.8372ms         8  479.65us  2.5020us  2.5006ms  cuEventSynchronize
+  0.03%  774.38us         1  774.38us  774.38us  774.38us  cuMemAllocHost
+  0.02%  482.94us         1  482.94us  482.94us  482.94us  cuModuleLoadData
+  0.01%  232.24us        12  19.352us  8.3820us  53.695us  cuMemcpyHtoDAsync
+  0.00%  101.99us         5  20.398us  13.731us  39.515us  cuMemcpyDtoHAsync
+  0.00%  51.152us        10  5.1150us  3.2370us  10.321us  cuEventRecord
+  0.00%  50.056us         1  50.056us  50.056us  50.056us  cuStreamCreate
+  0.00%  16.301us         5  3.2600us     808ns  5.2240us  cuEventCreate
+  0.00%  12.676us         6  2.1120us  1.0370us  3.5740us  cuPointerGetAttributes
+  0.00%  4.4480us         3  1.4820us     479ns  2.9690us  cuCtxSetCurrent
+  0.00%  3.7290us         3  1.2430us     301ns  2.7920us  cuDeviceGetCount
+  0.00%  3.1330us         3  1.0440us     315ns  2.3150us  cuModuleGetFunction
+  0.00%  2.9980us         8     374ns     260ns     792ns  cuDeviceGetAttribute
+  0.00%  2.8010us         6     466ns     245ns     986ns  cuDeviceGet
+  0.00%  1.2940us         2     647ns     253ns  1.0410us  cuDeviceComputeCapability
+  0.00%     599ns         1     599ns     599ns     599ns  cuCtxGetCurrent
+  0.00%     553ns         1     553ns     553ns     553ns  cuDriverGetVersion
+
+==3340== OpenACC (excl):
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 82.27%  1.94329s       400  4.8582ms  4.8468ms  4.9089ms  acc_wait@tf-anal.f90:58
+ 13.85%  327.12ms         1  327.12ms  327.12ms  327.12ms  acc_wait@tf-anal.f90:43
+  2.37%  56.089ms         1  56.089ms  56.089ms  56.089ms  acc_enter_data@tf-anal.f90:37
+  0.83%  19.554ms         1  19.554ms  19.554ms  19.554ms  acc_exit_data@tf-anal.f90:37
+  0.33%  7.8184ms       400  19.545us  16.755us  60.945us  acc_enqueue_launch@tf-anal.f90:58 (tf_only_58_gpu)
+  0.23%  5.3819ms         1  5.3819ms  5.3819ms  5.3819ms  acc_wait@tf-anal.f90:70
+  0.08%  1.8515ms       400  4.6280us  3.4920us  18.681us  acc_compute_construct@tf-anal.f90:56
+  0.02%  509.99us         1  509.99us  509.99us  509.99us  acc_device_init@tf-anal.f90:37
+  0.01%  286.81us        12  23.900us  10.075us  66.883us  acc_enqueue_upload@tf-anal.f90:37
+  0.01%  155.87us         5  31.173us  20.042us  61.817us  acc_enqueue_download@tf-anal.f90:70
+  0.00%  66.165us         1  66.165us  66.165us  66.165us  acc_enqueue_launch@tf-anal.f90:39 (tf_only_39_gpu)
+  0.00%  26.861us         1  26.861us  26.861us  26.861us  acc_compute_construct@tf-anal.f90:38
+  0.00%  21.305us         1  21.305us  21.305us  21.305us  acc_enqueue_launch@tf-anal.f90:43 (tf_only_43_gpu)
+  0.00%  11.448us         1  11.448us  11.448us  11.448us  acc_wait@tf-anal.f90:37
+  0.00%       0ns        12       0ns       0ns       0ns  acc_create@tf-anal.f90:37
+  0.00%       0ns        12       0ns       0ns       0ns  acc_alloc@tf-anal.f90:37
+  0.00%       0ns        12       0ns       0ns       0ns  acc_delete@tf-anal.f90:70
+
+======== CPU profiling result (bottom up):
+Time(%)      Time  Name
+ 65.34%  20.8442s  ???
+ 65.34%  20.8442s  | start_thread
+ 65.34%  20.8442s  |   __clone
+  7.20%  2.29588s  cuStreamSynchronize
+  7.20%  2.29588s  | __pgi_uacc_cuda_wait
+  7.20%  2.29588s  |   __pgi_uacc_computedone2
+  7.20%  2.29588s  |     __pgi_uacc_computedone
+  7.20%  2.29588s  |       MAIN_
+  7.20%  2.29588s  |         main
+  3.79%  1.20836s  ED_format
+  3.79%  1.20836s  | __fortio_format_double
+  3.79%  1.20836s  |   call_format_double
+  3.79%  1.20836s  |     fw_writenum
+  3.79%  1.20836s  |       fw_write
+  3.79%  1.20836s  |         __f90io_fmt_write
+  2.68%  855.92ms  |           pgf90io_sc_d_fmt_write
+  2.68%  855.92ms  |           | MAIN_
+  2.68%  855.92ms  |           |   main
+  1.10%  352.44ms  |           __io_write
+  1.10%  352.44ms  |             __fortio_loop
+  1.10%  352.44ms  |               __fortio_main
+  1.10%  352.44ms  |                 pghpfio_fmt_write
+  1.10%  352.44ms  |                   MAIN_
+  1.10%  352.44ms  |                     main
+  1.83%  584.04ms  _IO_getc
+  1.83%  584.04ms  | read_record
+  1.83%  584.04ms  |   __f90io_ldr
+  1.83%  584.04ms  |     __io_read
+  1.83%  584.04ms  |       __fortio_loop
+  1.83%  584.04ms  |         __fortio_main
+  1.83%  584.04ms  |           pghpfio_ldr
+  1.83%  584.04ms  |             MAIN_
+  1.83%  584.04ms  |               main
+  1.33%  422.93ms  ???
+  0.38%  120.84ms  | free
+  0.38%  120.84ms  | | free_gbl
+  0.38%  120.84ms  | |   pgf90io_fmtw_end
+  0.38%  120.84ms  | |     MAIN_
+  0.38%  120.84ms  | |       main
+  0.32%   100.7ms  | __fortio_getnum
+  0.32%   100.7ms  | | get_number
+  0.32%   100.7ms  | |   get_token
+  0.32%   100.7ms  | |     __f90io_ldr
+  0.32%   100.7ms  | |       __io_read
+  0.32%   100.7ms  | |         __fortio_loop
+  0.32%   100.7ms  | |           __fortio_main
+  0.32%   100.7ms  | |             pghpfio_ldr
+  0.32%   100.7ms  | |               MAIN_
+  0.32%   100.7ms  | |                 main
+  0.16%  50.348ms  | _IO_file_xsputn
+  0.16%  50.348ms  | | _IO_fwrite
+  0.16%  50.348ms  | |   __io_fwrite
+  0.16%  50.348ms  | |     fw_write_record
+  0.16%  50.348ms  | |       fw_write
+  0.16%  50.348ms  | |         _f90io_fmtw_end
+  0.16%  50.348ms  | |           pgf90io_fmtw_end
+  0.16%  50.348ms  | |             MAIN_
+  0.16%  50.348ms  | |               main
+  0.16%  50.348ms  | allocate_new_gbl
+  0.16%  50.348ms  | | pgf90io_fmtw_init
+  0.16%  50.348ms  | |   MAIN_
+  0.16%  50.348ms  | |     main
+  0.13%  40.279ms  | ???
+  0.13%  40.279ms  | | __fortio_getnum
+  0.13%  40.279ms  | |   get_number
+  0.13%  40.279ms  | |     get_token
+  0.13%  40.279ms  | |       __f90io_ldr
+  0.13%  40.279ms  | |         __io_read
+  0.13%  40.279ms  | |           __fortio_loop
+  0.13%  40.279ms  | |             __fortio_main
+  0.13%  40.279ms  | |               pghpfio_ldr
+  0.13%  40.279ms  | |                 MAIN_
+  0.13%  40.279ms  | |                   main
+  0.13%  40.279ms  | malloc
+  0.13%  40.279ms  | | ef_alloc
+  0.13%  40.279ms  | |   ef_putnum
+  0.13%  40.279ms  | |     _f90io_encode_fmt
+  0.13%  40.279ms  | |       pgf90io_encode_fmt
+  0.13%  40.279ms  | |         MAIN_
+  0.13%  40.279ms  | |           main
+  0.03%   10.07ms  | allocate_new_fmtgbl
+  0.03%   10.07ms  | | __fortio_fmtinit
+  0.03%   10.07ms  | |   _f90io_encode_fmt
+  0.03%   10.07ms  | |     pgf90io_encode_fmt
+  0.03%   10.07ms  | |       MAIN_
+  0.03%   10.07ms  | |         main
+  0.03%   10.07ms  | write
+  0.03%   10.07ms  |   _IO_file_write
+  0.03%   10.07ms  |     _IO_do_write
+  0.03%   10.07ms  |       _IO_file_xsputn
+  0.03%   10.07ms  |         _IO_fwrite
+  0.03%   10.07ms  |           __io_fwrite
+  0.03%   10.07ms  |             fw_write_record
+  0.03%   10.07ms  |               fw_write
+  0.03%   10.07ms  |                 _f90io_fmtw_end
+  0.03%   10.07ms  |                   pgf90io_fmtw_end
+  0.03%   10.07ms  |                     MAIN_
+  0.03%   10.07ms  |                       main
+  1.20%  382.65ms  _f90io_encode_fmt
+  1.20%  382.65ms  | pgf90io_encode_fmt
+  1.20%  382.65ms  |   MAIN_
+  1.20%  382.65ms  |     main
+  1.10%  352.44ms  fw_write
+  0.82%  261.81ms  | __f90io_fmt_write
+  0.47%  151.04ms  | | pgf90io_sc_d_fmt_write
+  0.47%  151.04ms  | | | MAIN_
+  0.47%  151.04ms  | | |   main
+  0.35%  110.77ms  | | __io_write
+  0.35%  110.77ms  | |   __fortio_loop
+  0.35%  110.77ms  | |     __fortio_main
+  0.35%  110.77ms  | |       pghpfio_fmt_write
+  0.35%  110.77ms  | |         MAIN_
+  0.35%  110.77ms  | |           main
+  0.25%  80.557ms  | _f90io_fmtw_end
+  0.25%  80.557ms  | | pgf90io_fmtw_end
+  0.25%  80.557ms  | |   MAIN_
+  0.25%  80.557ms  | |     main
+  0.03%   10.07ms  | pgf90io_fmtw_end
+  0.03%   10.07ms  |   MAIN_
+  0.03%   10.07ms  |     main
+  1.04%   332.3ms  cuDevicePrimaryCtxRetain
+  1.04%   332.3ms  | __pgi_uacc_cuda_init_device
+  1.04%   332.3ms  |   __pgi_uacc_cuda_select_valid
+  1.04%   332.3ms  |     __pgi_uacc_select_devid
+  1.04%   332.3ms  |       __pgi_uacc_dataenterstart
+  1.04%   332.3ms  |         MAIN_
+  1.04%   332.3ms  |           main
+  1.01%  322.23ms  fw_get_fmtcode
+  0.98%  312.16ms  | fw_write
+  0.79%  251.74ms  | | __f90io_fmt_write
+  0.73%   231.6ms  | | | pgf90io_sc_d_fmt_write
+  0.73%   231.6ms  | | | | MAIN_
+  0.73%   231.6ms  | | | |   main
+  0.06%  20.139ms  | | | __io_write
+  0.06%  20.139ms  | | |   __fortio_loop
+  0.06%  20.139ms  | | |     __fortio_main
+  0.06%  20.139ms  | | |       pghpfio_fmt_write
+  0.06%  20.139ms  | | |         MAIN_
+  0.06%  20.139ms  | | |           main
+  0.19%  60.418ms  | | _f90io_fmtw_end
+  0.19%  60.418ms  | |   pgf90io_fmtw_end
+  0.19%  60.418ms  | |     MAIN_
+  0.19%  60.418ms  | |       main
+  0.03%   10.07ms  | __f90io_fmt_write
+  0.03%   10.07ms  |   pgf90io_sc_d_fmt_write
+  0.03%   10.07ms  |     MAIN_
+  0.03%   10.07ms  |       main
+  0.95%  302.09ms  reversed_uint64
+  0.95%  302.09ms  | format_int_part
+  0.95%  302.09ms  |   ED_format
+  0.95%  302.09ms  |     __fortio_format_double
+  0.95%  302.09ms  |       call_format_double
+  0.95%  302.09ms  |         fw_writenum
+  0.95%  302.09ms  |           fw_write
+  0.95%  302.09ms  |             __f90io_fmt_write
+  0.60%  191.32ms  |               pgf90io_sc_d_fmt_write
+  0.60%  191.32ms  |               | MAIN_
+  0.60%  191.32ms  |               |   main
+  0.35%  110.77ms  |               __io_write
+  0.35%  110.77ms  |                 __fortio_loop
+  0.35%  110.77ms  |                   __fortio_main
+  0.35%  110.77ms  |                     pghpfio_fmt_write
+  0.35%  110.77ms  |                       MAIN_
+  0.35%  110.77ms  |                         main
+  0.95%  302.09ms  write
+  0.95%  302.09ms  | _IO_file_write
+  0.85%  271.88ms  |   _IO_do_write
+  0.85%  271.88ms  |   | _IO_file_xsputn
+  0.85%  271.88ms  |   |   _IO_fwrite
+  0.85%  271.88ms  |   |     __io_fwrite
+  0.85%  271.88ms  |   |       fw_write_record
+  0.85%  271.88ms  |   |         fw_write
+  0.85%  271.88ms  |   |           _f90io_fmtw_end
+  0.85%  271.88ms  |   |             pgf90io_fmtw_end
+  0.85%  271.88ms  |   |               MAIN_
+  0.85%  271.88ms  |   |                 main
+  0.09%  30.209ms  |   _IO_file_xsputn
+  0.09%  30.209ms  |     _IO_fwrite
+  0.09%  30.209ms  |       __io_fwrite
+  0.09%  30.209ms  |         fw_write_record
+  0.09%  30.209ms  |           fw_write
+  0.09%  30.209ms  |             _f90io_fmtw_end
+  0.09%  30.209ms  |               pgf90io_fmtw_end
+  0.09%  30.209ms  |                 MAIN_
+  0.09%  30.209ms  |                   main
+  0.82%  261.81ms  fw_writenum
+  0.82%  261.81ms  | fw_write
+  0.82%  261.81ms  |   __f90io_fmt_write
+  0.57%  181.25ms  |     pgf90io_sc_d_fmt_write
+  0.57%  181.25ms  |     | MAIN_
+  0.57%  181.25ms  |     |   main
+  0.25%  80.557ms  |     __io_write
+  0.25%  80.557ms  |       __fortio_loop
+  0.25%  80.557ms  |         __fortio_main
+  0.25%  80.557ms  |           pghpfio_fmt_write
+  0.25%  80.557ms  |             MAIN_
+  0.25%  80.557ms  |               main
+  0.73%   231.6ms  copy
+  0.73%   231.6ms  | ED_format
+  0.73%   231.6ms  |   __fortio_format_double
+  0.73%   231.6ms  |     call_format_double
+  0.73%   231.6ms  |       fw_writenum
+  0.73%   231.6ms  |         fw_write
+  0.73%   231.6ms  |           __f90io_fmt_write
+  0.51%  161.11ms  |             pgf90io_sc_d_fmt_write
+  0.51%  161.11ms  |             | MAIN_
+  0.51%  161.11ms  |             |   main
+  0.22%  70.488ms  |             __io_write
+  0.22%  70.488ms  |               __fortio_loop
+  0.22%  70.488ms  |                 __fortio_main
+  0.22%  70.488ms  |                   pghpfio_fmt_write
+  0.22%  70.488ms  |                     MAIN_
+  0.22%  70.488ms  |                       main
+  0.69%  221.53ms  MAIN_
+  0.69%  221.53ms  | main
+  0.66%  211.46ms  ef_getnum
+  0.66%  211.46ms  | _f90io_encode_fmt
+  0.66%  211.46ms  |   pgf90io_encode_fmt
+  0.66%  211.46ms  |     MAIN_
+  0.66%  211.46ms  |       main
+  0.66%  211.46ms  fw_get_val
+  0.32%   100.7ms  | fw_writenum
+  0.32%   100.7ms  | | fw_write
+  0.32%   100.7ms  | |   __f90io_fmt_write
+  0.16%  50.348ms  | |     __io_write
+  0.16%  50.348ms  | |     | __fortio_loop
+  0.16%  50.348ms  | |     |   __fortio_main
+  0.16%  50.348ms  | |     |     pghpfio_fmt_write
+  0.16%  50.348ms  | |     |       MAIN_
+  0.16%  50.348ms  | |     |         main
+  0.16%  50.348ms  | |     pgf90io_sc_d_fmt_write
+  0.16%  50.348ms  | |       MAIN_
+  0.16%  50.348ms  | |         main
+  0.28%  90.627ms  | fw_write
+  0.28%  90.627ms  | | __f90io_fmt_write
+  0.22%  70.488ms  | |   pgf90io_sc_d_fmt_write
+  0.22%  70.488ms  | |   | MAIN_
+  0.22%  70.488ms  | |   |   main
+  0.06%  20.139ms  | |   __io_write
+  0.06%  20.139ms  | |     __fortio_loop
+  0.06%  20.139ms  | |       __fortio_main
+  0.06%  20.139ms  | |         pghpfio_fmt_write
+  0.06%  20.139ms  | |           MAIN_
+  0.06%  20.139ms  | |             main
+  0.03%   10.07ms  | fw_get_fmtcode
+  0.03%   10.07ms  | | fw_write
+  0.03%   10.07ms  | |   __f90io_fmt_write
+  0.03%   10.07ms  | |     pgf90io_sc_d_fmt_write
+  0.03%   10.07ms  | |       MAIN_
+  0.03%   10.07ms  | |         main
+  0.03%   10.07ms  | __f90io_fmt_write
+  0.03%   10.07ms  |   pgf90io_sc_d_fmt_write
+  0.03%   10.07ms  |     MAIN_
+  0.03%   10.07ms  |       main
+  0.63%  201.39ms  format_expo
+  0.63%  201.39ms  | ED_format
+  0.63%  201.39ms  |   __fortio_format_double
+  0.63%  201.39ms  |     call_format_double
+  0.63%  201.39ms  |       fw_writenum
+  0.63%  201.39ms  |         fw_write
+  0.63%  201.39ms  |           __f90io_fmt_write
+  0.54%  171.18ms  |             pgf90io_sc_d_fmt_write
+  0.54%  171.18ms  |             | MAIN_
+  0.54%  171.18ms  |             |   main
+  0.09%  30.209ms  |             __io_write
+  0.09%  30.209ms  |               __fortio_loop
+  0.09%  30.209ms  |                 __fortio_main
+  0.09%  30.209ms  |                   pghpfio_fmt_write
+  0.09%  30.209ms  |                     MAIN_
+  0.09%  30.209ms  |                       main
+  0.60%  191.32ms  cuDevicePrimaryCtxRelease
+  0.60%  191.32ms  | __pgi_uacc_cuda_release_buffer
+  0.60%  191.32ms  |   ???
+  0.60%  191.32ms  |     ???
+  0.60%  191.32ms  |       __fort_exit
+  0.60%  191.32ms  |         pgf90_exit
+  0.60%  191.32ms  |           main
+  0.57%  181.25ms  format_int_part
+  0.57%  181.25ms  | ED_format
+  0.57%  181.25ms  |   __fortio_format_double
+  0.57%  181.25ms  |     call_format_double
+  0.57%  181.25ms  |       fw_writenum
+  0.57%  181.25ms  |         fw_write
+  0.57%  181.25ms  |           __f90io_fmt_write
+  0.41%  130.91ms  |             pgf90io_sc_d_fmt_write
+  0.41%  130.91ms  |             | MAIN_
+  0.41%  130.91ms  |             |   main
+  0.16%  50.348ms  |             __io_write
+  0.16%  50.348ms  |               __fortio_loop
+  0.16%  50.348ms  |                 __fortio_main
+  0.16%  50.348ms  |                   pghpfio_fmt_write
+  0.16%  50.348ms  |                     MAIN_
+  0.16%  50.348ms  |                       main
+  0.47%  151.04ms  fraction_digits
+  0.47%  151.04ms  | ED_format
+  0.47%  151.04ms  |   __fortio_format_double
+  0.47%  151.04ms  |     call_format_double
+  0.47%  151.04ms  |       fw_writenum
+  0.47%  151.04ms  |         fw_write
+  0.47%  151.04ms  |           __f90io_fmt_write
+  0.47%  151.04ms  |             pgf90io_sc_d_fmt_write
+  0.47%  151.04ms  |               MAIN_
+  0.47%  151.04ms  |                 main
+  0.41%  130.91ms  div_by_billion
+  0.41%  130.91ms  | format_int_part
+  0.41%  130.91ms  |   ED_format
+  0.41%  130.91ms  |     __fortio_format_double
+  0.41%  130.91ms  |       call_format_double
+  0.41%  130.91ms  |         fw_writenum
+  0.41%  130.91ms  |           fw_write
+  0.41%  130.91ms  |             __f90io_fmt_write
+  0.22%  70.488ms  |               __io_write
+  0.22%  70.488ms  |               | __fortio_loop
+  0.22%  70.488ms  |               |   __fortio_main
+  0.22%  70.488ms  |               |     pghpfio_fmt_write
+  0.22%  70.488ms  |               |       MAIN_
+  0.22%  70.488ms  |               |         main
+  0.19%  60.418ms  |               pgf90io_sc_d_fmt_write
+  0.19%  60.418ms  |                 MAIN_
+  0.19%  60.418ms  |                   main
+  0.38%  120.84ms  ef_nextchar
+  0.22%  70.488ms  | ef_getnum
+  0.22%  70.488ms  | | _f90io_encode_fmt
+  0.22%  70.488ms  | |   pgf90io_encode_fmt
+  0.22%  70.488ms  | |     MAIN_
+  0.22%  70.488ms  | |       main
+  0.16%  50.348ms  | _f90io_encode_fmt
+  0.16%  50.348ms  |   pgf90io_encode_fmt
+  0.16%  50.348ms  |     MAIN_
+  0.16%  50.348ms  |       main
+  0.38%  120.84ms  ef_putnum
+  0.38%  120.84ms  | _f90io_encode_fmt
+  0.38%  120.84ms  |   pgf90io_encode_fmt
+  0.38%  120.84ms  |     MAIN_
+  0.38%  120.84ms  |       main
+  0.38%  120.84ms  ef_put
+  0.38%  120.84ms  | _f90io_encode_fmt
+  0.38%  120.84ms  |   pgf90io_encode_fmt
+  0.38%  120.84ms  |     MAIN_
+  0.38%  120.84ms  |       main
+  0.38%  120.84ms  malloc
+  0.35%  110.77ms  | ef_alloc
+  0.35%  110.77ms  | | ef_putnum
+  0.35%  110.77ms  | |   _f90io_encode_fmt
+  0.35%  110.77ms  | |     pgf90io_encode_fmt
+  0.35%  110.77ms  | |       MAIN_
+  0.35%  110.77ms  | |         main
+  0.03%   10.07ms  | __fort_malloc_without_abort
+  0.03%   10.07ms  |   __fort_gmalloc_without_abort
+  0.03%   10.07ms  |     __alloc04
+  0.03%   10.07ms  |       pgf90_alloc04
+  0.03%   10.07ms  |         MAIN_
+  0.03%   10.07ms  |           main
+  0.38%  120.84ms  format_fraction
+  0.38%  120.84ms  | ED_format
+  0.38%  120.84ms  |   __fortio_format_double
+  0.38%  120.84ms  |     call_format_double
+  0.38%  120.84ms  |       fw_writenum
+  0.38%  120.84ms  |         fw_write
+  0.38%  120.84ms  |           __f90io_fmt_write
+  0.38%  120.84ms  |             pgf90io_sc_d_fmt_write
+  0.38%  120.84ms  |               MAIN_
+  0.38%  120.84ms  |                 main
+  0.32%   100.7ms  ferror
+  0.32%   100.7ms  | __io_ferror
+  0.32%   100.7ms  |   fw_write_record
+  0.32%   100.7ms  |     fw_write
+  0.32%   100.7ms  |       _f90io_fmtw_end
+  0.32%   100.7ms  |         pgf90io_fmtw_end
+  0.32%   100.7ms  |           MAIN_
+  0.32%   100.7ms  |             main
+  0.32%   100.7ms  fw_init
+  0.32%   100.7ms  | pgf90io_fmtw_init
+  0.32%   100.7ms  |   MAIN_
+  0.32%   100.7ms  |     main
+  0.32%   100.7ms  _IO_fwrite
+  0.32%   100.7ms  | __io_fwrite
+  0.32%   100.7ms  |   fw_write_record
+  0.32%   100.7ms  |     fw_write
+  0.32%   100.7ms  |       _f90io_fmtw_end
+  0.32%   100.7ms  |         pgf90io_fmtw_end
+  0.32%   100.7ms  |           MAIN_
+  0.32%   100.7ms  |             main
+  0.28%  90.627ms  call_format_double
+  0.28%  90.627ms  | fw_writenum
+  0.28%  90.627ms  |   fw_write
+  0.28%  90.627ms  |     __f90io_fmt_write
+  0.22%  70.488ms  |       pgf90io_sc_d_fmt_write
+  0.22%  70.488ms  |       | MAIN_
+  0.22%  70.488ms  |       |   main
+  0.06%  20.139ms  |       __io_write
+  0.06%  20.139ms  |         __fortio_loop
+  0.06%  20.139ms  |           __fortio_main
+  0.06%  20.139ms  |             pghpfio_fmt_write
+  0.06%  20.139ms  |               MAIN_
+  0.06%  20.139ms  |                 main
+  0.28%  90.627ms  __f90io_fmt_write
+  0.19%  60.418ms  | pgf90io_sc_d_fmt_write
+  0.19%  60.418ms  | | MAIN_
+  0.19%  60.418ms  | |   main
+  0.09%  30.209ms  | __io_write
+  0.09%  30.209ms  |   __fortio_loop
+  0.09%  30.209ms  |     __fortio_main
+  0.09%  30.209ms  |       pghpfio_fmt_write
+  0.09%  30.209ms  |         MAIN_
+  0.09%  30.209ms  |           main
+  0.25%  80.557ms  pgf90io_sc_d_fmt_write
+  0.16%  50.348ms  | MAIN_
+  0.16%  50.348ms  | | main
+  0.09%  30.209ms  | main
+  0.25%  80.557ms  __fortio_getnum
+  0.25%  80.557ms  | get_number
+  0.25%  80.557ms  |   get_token
+  0.25%  80.557ms  |     __f90io_ldr
+  0.25%  80.557ms  |       __io_read
+  0.25%  80.557ms  |         __fortio_loop
+  0.25%  80.557ms  |           __fortio_main
+  0.25%  80.557ms  |             pghpfio_ldr
+  0.25%  80.557ms  |               MAIN_
+  0.25%  80.557ms  |                 main
+  0.25%  80.557ms  reversed_base_billion
+  0.25%  80.557ms  | format_int_part
+  0.25%  80.557ms  |   ED_format
+  0.25%  80.557ms  |     __fortio_format_double
+  0.25%  80.557ms  |       call_format_double
+  0.25%  80.557ms  |         fw_writenum
+  0.25%  80.557ms  |           fw_write
+  0.25%  80.557ms  |             __f90io_fmt_write
+  0.16%  50.348ms  |               __io_write
+  0.16%  50.348ms  |               | __fortio_loop
+  0.16%  50.348ms  |               |   __fortio_main
+  0.16%  50.348ms  |               |     pghpfio_fmt_write
+  0.16%  50.348ms  |               |       MAIN_
+  0.16%  50.348ms  |               |         main
+  0.09%  30.209ms  |               pgf90io_sc_d_fmt_write
+  0.09%  30.209ms  |                 MAIN_
+  0.09%  30.209ms  |                   main
+  0.22%  70.488ms  ???
+  0.03%   10.07ms  | _f90io_encode_fmt
+  0.03%   10.07ms  | | pgf90io_encode_fmt
+  0.03%   10.07ms  | |   MAIN_
+  0.03%   10.07ms  | |     main
+  0.03%   10.07ms  | format_fraction
+  0.03%   10.07ms  | | ED_format
+  0.03%   10.07ms  | |   __fortio_format_double
+  0.03%   10.07ms  | |     call_format_double
+  0.03%   10.07ms  | |       fw_writenum
+  0.03%   10.07ms  | |         fw_write
+  0.03%   10.07ms  | |           __f90io_fmt_write
+  0.03%   10.07ms  | |             pgf90io_sc_d_fmt_write
+  0.03%   10.07ms  | |               MAIN_
+  0.03%   10.07ms  | |                 main
+  0.03%   10.07ms  | fw_init
+  0.03%   10.07ms  | | pgf90io_fmtw_init
+  0.03%   10.07ms  | |   MAIN_
+  0.03%   10.07ms  | |     main
+  0.03%   10.07ms  | pgf90io_sc_d_fmt_write
+  0.03%   10.07ms  | | MAIN_
+  0.03%   10.07ms  | |   main
+  0.03%   10.07ms  | read_record
+  0.03%   10.07ms  | | __f90io_ldr
+  0.03%   10.07ms  | |   __io_read
+  0.03%   10.07ms  | |     __fortio_loop
+  0.03%   10.07ms  | |       __fortio_main
+  0.03%   10.07ms  | |         pghpfio_ldr
+  0.03%   10.07ms  | |           MAIN_
+  0.03%   10.07ms  | |             main
+  0.03%   10.07ms  | allocate_new_gbl
+  0.03%   10.07ms  | | set_src_info
+  0.03%   10.07ms  | |   pgf90io_src_info03
+  0.03%   10.07ms  | |     MAIN_
+  0.03%   10.07ms  | |       main
+  0.03%   10.07ms  | pgf90io_fmtw_end
+  0.03%   10.07ms  |   MAIN_
+  0.03%   10.07ms  |     main
+  0.22%  70.488ms  reserve_buffer
+  0.22%  70.488ms  | call_format_double
+  0.22%  70.488ms  |   fw_writenum
+  0.22%  70.488ms  |     fw_write
+  0.22%  70.488ms  |       __f90io_fmt_write
+  0.19%  60.418ms  |         pgf90io_sc_d_fmt_write
+  0.19%  60.418ms  |         | MAIN_
+  0.19%  60.418ms  |         |   main
+  0.03%   10.07ms  |         __io_write
+  0.03%   10.07ms  |           __fortio_loop
+  0.03%   10.07ms  |             __fortio_main
+  0.03%   10.07ms  |               pghpfio_fmt_write
+  0.03%   10.07ms  |                 MAIN_
+  0.03%   10.07ms  |                   main
+  0.19%  60.418ms  pgf90io_fmtw_init
+  0.19%  60.418ms  | MAIN_
+  0.19%  60.418ms  |   main
+  0.16%  50.348ms  should_round_up
+  0.16%  50.348ms  | ED_format
+  0.16%  50.348ms  |   __fortio_format_double
+  0.16%  50.348ms  |     call_format_double
+  0.16%  50.348ms  |       fw_writenum
+  0.16%  50.348ms  |         fw_write
+  0.16%  50.348ms  |           __f90io_fmt_write
+  0.09%  30.209ms  |             __io_write
+  0.09%  30.209ms  |             | __fortio_loop
+  0.09%  30.209ms  |             |   __fortio_main
+  0.09%  30.209ms  |             |     pghpfio_fmt_write
+  0.09%  30.209ms  |             |       MAIN_
+  0.09%  30.209ms  |             |         main
+  0.06%  20.139ms  |             pgf90io_sc_d_fmt_write
+  0.06%  20.139ms  |               MAIN_
+  0.06%  20.139ms  |                 main
+  0.16%  50.348ms  __fortio_find_unit
+  0.16%  50.348ms  | __fortio_rwinit
+  0.16%  50.348ms  |   fw_init
+  0.16%  50.348ms  |     pgf90io_fmtw_init
+  0.16%  50.348ms  |       MAIN_
+  0.16%  50.348ms  |         main
+  0.16%  50.348ms  fputc
+  0.16%  50.348ms  | fw_write_record
+  0.16%  50.348ms  |   fw_write
+  0.16%  50.348ms  |     _f90io_fmtw_end
+  0.16%  50.348ms  |       pgf90io_fmtw_end
+  0.16%  50.348ms  |         MAIN_
+  0.16%  50.348ms  |           main
+  0.16%  50.348ms  __fortio_format_double
+  0.16%  50.348ms  | call_format_double
+  0.16%  50.348ms  |   fw_writenum
+  0.16%  50.348ms  |     fw_write
+  0.16%  50.348ms  |       __f90io_fmt_write
+  0.16%  50.348ms  |         pgf90io_sc_d_fmt_write
+  0.16%  50.348ms  |           MAIN_
+  0.16%  50.348ms  |             main
+  0.13%  40.279ms  fw_write_record
+  0.13%  40.279ms  | fw_write
+  0.13%  40.279ms  |   _f90io_fmtw_end
+  0.13%  40.279ms  |     pgf90io_fmtw_end
+  0.13%  40.279ms  |       MAIN_
+  0.13%  40.279ms  |         main
+  0.13%  40.279ms  fill
+  0.13%  40.279ms  | ED_format
+  0.13%  40.279ms  |   __fortio_format_double
+  0.13%  40.279ms  |     call_format_double
+  0.13%  40.279ms  |       fw_writenum
+  0.13%  40.279ms  |         fw_write
+  0.13%  40.279ms  |           __f90io_fmt_write
+  0.09%  30.209ms  |             pgf90io_sc_d_fmt_write
+  0.09%  30.209ms  |             | MAIN_
+  0.09%  30.209ms  |             |   main
+  0.03%   10.07ms  |             __io_write
+  0.03%   10.07ms  |               __fortio_loop
+  0.03%   10.07ms  |                 __fortio_main
+  0.03%   10.07ms  |                   pghpfio_fmt_write
+  0.03%   10.07ms  |                     MAIN_
+  0.03%   10.07ms  |                       main
+  0.13%  40.279ms  _f90io_fmtw_end
+  0.13%  40.279ms  | pgf90io_fmtw_end
+  0.13%  40.279ms  |   MAIN_
+  0.13%  40.279ms  |     main
+  0.13%  40.279ms  fw_check_size
+  0.09%  30.209ms  | call_format_double
+  0.09%  30.209ms  | | fw_writenum
+  0.09%  30.209ms  | |   fw_write
+  0.09%  30.209ms  | |     __f90io_fmt_write
+  0.06%  20.139ms  | |       __io_write
+  0.06%  20.139ms  | |       | __fortio_loop
+  0.06%  20.139ms  | |       |   __fortio_main
+  0.06%  20.139ms  | |       |     pghpfio_fmt_write
+  0.06%  20.139ms  | |       |       MAIN_
+  0.06%  20.139ms  | |       |         main
+  0.03%   10.07ms  | |       pgf90io_sc_d_fmt_write
+  0.03%   10.07ms  | |         MAIN_
+  0.03%   10.07ms  | |           main
+  0.03%   10.07ms  | reserve_buffer
+  0.03%   10.07ms  |   call_format_double
+  0.03%   10.07ms  |     fw_writenum
+  0.03%   10.07ms  |       fw_write
+  0.03%   10.07ms  |         __f90io_fmt_write
+  0.03%   10.07ms  |           pgf90io_sc_d_fmt_write
+  0.03%   10.07ms  |             MAIN_
+  0.03%   10.07ms  |               main
+  0.13%  40.279ms  save_gbl
+  0.13%  40.279ms  | __fortio_errinit03
+  0.13%  40.279ms  |   _f90io_encode_fmt
+  0.13%  40.279ms  |     pgf90io_encode_fmt
+  0.13%  40.279ms  |       MAIN_
+  0.13%  40.279ms  |         main
+  0.09%  30.209ms  __c_mzero8
+  0.09%  30.209ms  | MAIN_
+  0.09%  30.209ms  |   main
+  0.09%  30.209ms  __fortio_errinit03
+  0.06%  20.139ms  | _f90io_encode_fmt
+  0.06%  20.139ms  | | pgf90io_encode_fmt
+  0.06%  20.139ms  | |   MAIN_
+  0.06%  20.139ms  | |     main
+  0.03%   10.07ms  | fw_init
+  0.03%   10.07ms  |   pgf90io_fmtw_init
+  0.03%   10.07ms  |     MAIN_
+  0.03%   10.07ms  |       main
+  0.09%  30.209ms  check_outer_parens
+  0.09%  30.209ms  | _f90io_encode_fmt
+  0.09%  30.209ms  |   pgf90io_encode_fmt
+  0.09%  30.209ms  |     MAIN_
+  0.09%  30.209ms  |       main
+  0.09%  30.209ms  allocate_new_gbl
+  0.06%  20.139ms  | set_src_info
+  0.06%  20.139ms  | | pgf90io_src_info03
+  0.06%  20.139ms  | |   MAIN_
+  0.06%  20.139ms  | |     main
+  0.03%   10.07ms  | pgf90io_fmtw_init
+  0.03%   10.07ms  |   MAIN_
+  0.03%   10.07ms  |     main
+  0.09%  30.209ms  read_record
+  0.09%  30.209ms  | __f90io_ldr
+  0.09%  30.209ms  |   __io_read
+  0.09%  30.209ms  |     __fortio_loop
+  0.09%  30.209ms  |       __fortio_main
+  0.09%  30.209ms  |         pghpfio_ldr
+  0.09%  30.209ms  |           MAIN_
+  0.09%  30.209ms  |             main
+  0.09%  30.209ms  free_gbl
+  0.06%  20.139ms  | __fortio_errend03
+  0.06%  20.139ms  | | pgf90io_encode_fmt
+  0.06%  20.139ms  | |   MAIN_
+  0.06%  20.139ms  | |     main
+  0.03%   10.07ms  | pgf90io_fmtw_end
+  0.03%   10.07ms  |   MAIN_
+  0.03%   10.07ms  |     main
+  0.06%  20.139ms  __mth_i_dfixuk
+  0.06%  20.139ms  | ED_format
+  0.06%  20.139ms  |   __fortio_format_double
+  0.06%  20.139ms  |     call_format_double
+  0.06%  20.139ms  |       fw_writenum
+  0.06%  20.139ms  |         fw_write
+  0.06%  20.139ms  |           __f90io_fmt_write
+  0.06%  20.139ms  |             pgf90io_sc_d_fmt_write
+  0.06%  20.139ms  |               MAIN_
+  0.06%  20.139ms  |                 main
+  0.06%  20.139ms  __fortio_assign
+  0.06%  20.139ms  | __f90io_ldr
+  0.06%  20.139ms  |   __io_read
+  0.06%  20.139ms  |     __fortio_loop
+  0.06%  20.139ms  |       __fortio_main
+  0.06%  20.139ms  |         pghpfio_ldr
+  0.06%  20.139ms  |           MAIN_
+  0.06%  20.139ms  |             main
+  0.06%  20.139ms  get_number
+  0.06%  20.139ms  | get_token
+  0.06%  20.139ms  |   __f90io_ldr
+  0.06%  20.139ms  |     __io_read
+  0.06%  20.139ms  |       __fortio_loop
+  0.06%  20.139ms  |         __fortio_main
+  0.06%  20.139ms  |           pghpfio_ldr
+  0.06%  20.139ms  |             MAIN_
+  0.06%  20.139ms  |               main
+  0.06%  20.139ms  _IO_file_close
+  0.06%  20.139ms  | _IO_file_close_it
+  0.06%  20.139ms  |   _IO_fclose
+  0.06%  20.139ms  |     __fortio_close
+  0.06%  20.139ms  |       _f90io_close
+  0.06%  20.139ms  |         pgf90io_close
+  0.06%  20.139ms  |           MAIN_
+  0.06%  20.139ms  |             main
+  0.06%  20.139ms  cuInit
+  0.06%  20.139ms  | __pgi_uacc_cuda_init
+  0.06%  20.139ms  |   __pgi_uacc_enumerate
+  0.06%  20.139ms  |     __pgi_uacc_initialize
+  0.06%  20.139ms  |       __pgi_uacc_dataenterstart
+  0.06%  20.139ms  |         MAIN_
+  0.06%  20.139ms  |           main
+  0.06%  20.139ms  cuMemAlloc_v2
+  0.06%  20.139ms  | __pgi_uacc_cuda_alloc
+  0.06%  20.139ms  |   __pgi_uacc_alloc
+  0.06%  20.139ms  |     do_create
+  0.06%  20.139ms  |       __pgi_uacc_excontig_search
+  0.06%  20.139ms  |         __pgi_uacc_create
+  0.06%  20.139ms  |           __pgi_uacc_dataonb
+  0.06%  20.139ms  |             MAIN_
+  0.06%  20.139ms  |               main
+  0.06%  20.139ms  __fortio_rwinit
+  0.06%  20.139ms  | fw_init
+  0.06%  20.139ms  |   pgf90io_fmtw_init
+  0.06%  20.139ms  |     MAIN_
+  0.06%  20.139ms  |       main
+  0.06%  20.139ms  get_token
+  0.06%  20.139ms  | __f90io_ldr
+  0.06%  20.139ms  |   __io_read
+  0.06%  20.139ms  |     __fortio_loop
+  0.06%  20.139ms  |       __fortio_main
+  0.06%  20.139ms  |         pghpfio_ldr
+  0.06%  20.139ms  |           MAIN_
+  0.06%  20.139ms  |             main
+  0.06%  20.139ms  ftruncate64
+  0.06%  20.139ms  | __fortio_trunc
+  0.06%  20.139ms  |   __fortio_rwinit
+  0.06%  20.139ms  |     fw_init
+  0.06%  20.139ms  |       pgf90io_fmtw_init
+  0.06%  20.139ms  |         MAIN_
+  0.06%  20.139ms  |           main
+  0.06%  20.139ms  cuMemFreeHost
+  0.06%  20.139ms  | __pgi_uacc_cuda_free_device_buffers
+  0.06%  20.139ms  |   __pgi_uacc_cuda_release_buffer
+  0.06%  20.139ms  |     ???
+  0.06%  20.139ms  |       ???
+  0.06%  20.139ms  |         __fort_exit
+  0.06%  20.139ms  |           pgf90_exit
+  0.06%  20.139ms  |             main
+  0.06%  20.139ms  __c_mcopy8
+  0.03%   10.07ms  | __pgi_uacc_cuda_drain_down
+  0.03%   10.07ms  | | __pgi_uacc_cuda_get_buffer
+  0.03%   10.07ms  | |   __pgi_uacc_cuda_datadown1
+  0.03%   10.07ms  | |     __pgi_uacc_datadown1
+  0.03%   10.07ms  | |       __pgi_uacc_datadownx
+  0.03%   10.07ms  | |         __pgi_uacc_dataoffb2
+  0.03%   10.07ms  | |           MAIN_
+  0.03%   10.07ms  | |             main
+  0.03%   10.07ms  | __pgi_uacc_cuda_dataup1
+  0.03%   10.07ms  |   __pgi_uacc_dataup1
+  0.03%   10.07ms  |     __pgi_uacc_dataupx
+  0.03%   10.07ms  |       __pgi_uacc_dataonb
+  0.03%   10.07ms  |         MAIN_
+  0.03%   10.07ms  |           main
+  0.06%  20.139ms  read
+  0.06%  20.139ms  | _IO_file_underflow
+  0.06%  20.139ms  |   _IO_default_uflow
+  0.06%  20.139ms  |     _IO_getc
+  0.06%  20.139ms  |       read_record
+  0.06%  20.139ms  |         __f90io_ldr
+  0.06%  20.139ms  |           __io_read
+  0.06%  20.139ms  |             __fortio_loop
+  0.06%  20.139ms  |               __fortio_main
+  0.06%  20.139ms  |                 pghpfio_ldr
+  0.06%  20.139ms  |                   MAIN_
+  0.06%  20.139ms  |                     main
+  0.03%   10.07ms  cuEventSynchronize
+  0.03%   10.07ms  | __pgi_uacc_cuda_drain_down
+  0.03%   10.07ms  |   __pgi_uacc_cuda_get_buffer
+  0.03%   10.07ms  |     __pgi_uacc_cuda_datadown1
+  0.03%   10.07ms  |       __pgi_uacc_datadown1
+  0.03%   10.07ms  |         __pgi_uacc_datadownx
+  0.03%   10.07ms  |           __pgi_uacc_dataoffb2
+  0.03%   10.07ms  |             MAIN_
+  0.03%   10.07ms  |               main
+  0.03%   10.07ms  pgf90io_encode_fmt
+  0.03%   10.07ms  | MAIN_
+  0.03%   10.07ms  |   main
+  0.03%   10.07ms  ???
+  0.03%   10.07ms  | MAIN_
+  0.03%   10.07ms  |   main
+  0.03%   10.07ms  reuse_alloc
+  0.03%   10.07ms  | pgf90_dealloc03
+  0.03%   10.07ms  |   MAIN_
+  0.03%   10.07ms  |     main
+  0.03%   10.07ms  free_fmtgbl
+  0.03%   10.07ms  | __fortio_fmtend
+  0.03%   10.07ms  |   pgf90io_fmtw_end
+  0.03%   10.07ms  |     MAIN_
+  0.03%   10.07ms  |       main
+  0.03%   10.07ms  ???
+  0.03%   10.07ms  cuMemHostAlloc
+  0.03%   10.07ms  | __pgi_uacc_cuda_get_buffer
+  0.03%   10.07ms  |   __pgi_uacc_cuda_dataup1
+  0.03%   10.07ms  |     __pgi_uacc_dataup1
+  0.03%   10.07ms  |       __pgi_uacc_dataupx
+  0.03%   10.07ms  |         __pgi_uacc_dataonb
+  0.03%   10.07ms  |           MAIN_
+  0.03%   10.07ms  |             main
+  0.03%   10.07ms  __io_ferror
+  0.03%   10.07ms  | fw_write_record
+  0.03%   10.07ms  |   fw_write
+  0.03%   10.07ms  |     _f90io_fmtw_end
+  0.03%   10.07ms  |       pgf90io_fmtw_end
+  0.03%   10.07ms  |         MAIN_
+  0.03%   10.07ms  |           main
+  0.03%   10.07ms  save_fmtgbl
+  0.03%   10.07ms  | __fortio_fmtinit
+  0.03%   10.07ms  |   _f90io_encode_fmt
+  0.03%   10.07ms  |     pgf90io_encode_fmt
+  0.03%   10.07ms  |       MAIN_
+  0.03%   10.07ms  |         main
+  0.03%   10.07ms  __io_fwrite
+  0.03%   10.07ms  | fw_write_record
+  0.03%   10.07ms  |   fw_write
+  0.03%   10.07ms  |     _f90io_fmtw_end
+  0.03%   10.07ms  |       pgf90io_fmtw_end
+  0.03%   10.07ms  |         MAIN_
+  0.03%   10.07ms  |           main
+  0.03%   10.07ms  __fortio_errend03
+  0.03%   10.07ms  | pgf90io_encode_fmt
+  0.03%   10.07ms  |   MAIN_
+  0.03%   10.07ms  |     main
+  0.03%   10.07ms  __fortio_fmtend
+  0.03%   10.07ms  | pgf90io_fmtw_end
+  0.03%   10.07ms  |   MAIN_
+  0.03%   10.07ms  |     main
+  0.03%   10.07ms  strlen
+  0.03%   10.07ms  | ???
+  0.03%   10.07ms  |   __fortio_getnum
+  0.03%   10.07ms  |     get_number
+  0.03%   10.07ms  |       get_token
+  0.03%   10.07ms  |         __f90io_ldr
+  0.03%   10.07ms  |           __io_read
+  0.03%   10.07ms  |             __fortio_loop
+  0.03%   10.07ms  |               __fortio_main
+  0.03%   10.07ms  |                 pghpfio_ldr
+  0.03%   10.07ms  |                   MAIN_
+  0.03%   10.07ms  |                     main
+  0.03%   10.07ms  ef_alloc
+  0.03%   10.07ms  | ef_putnum
+  0.03%   10.07ms  |   _f90io_encode_fmt
+  0.03%   10.07ms  |     pgf90io_encode_fmt
+  0.03%   10.07ms  |       MAIN_
+  0.03%   10.07ms  |         main
+  0.03%   10.07ms  pgf90io_src_info03
+  0.03%   10.07ms  | MAIN_
+  0.03%   10.07ms  |   main
+  0.03%   10.07ms  ???
+  0.03%   10.07ms  | ???
+  0.03%   10.07ms  |   ???
+  0.03%   10.07ms  |     ???
+  0.03%   10.07ms  |       ???
+  0.03%   10.07ms  |         ???
+  0.03%   10.07ms  |           ???
+  0.03%   10.07ms  |             dlopen
+  0.03%   10.07ms  |               __pgi_uacc_add_profile_library
+  0.03%   10.07ms  |                 __pgi_uacc_add_profile_libraries
+  0.03%   10.07ms  |                   __pgi_uacc_globalinit
+  0.03%   10.07ms  |                     __pgi_uacc_enumerate
+  0.03%   10.07ms  |                       __pgi_uacc_initialize
+  0.03%   10.07ms  |                         __pgi_uacc_dataenterstart
+  0.03%   10.07ms  |                           MAIN_
+  0.03%   10.07ms  |                             main
+  0.03%   10.07ms  __mth_i_dfloatuk
+  0.03%   10.07ms  | ED_format
+  0.03%   10.07ms  |   __fortio_format_double
+  0.03%   10.07ms  |     call_format_double
+  0.03%   10.07ms  |       fw_writenum
+  0.03%   10.07ms  |         fw_write
+  0.03%   10.07ms  |           __f90io_fmt_write
+  0.03%   10.07ms  |             pgf90io_sc_d_fmt_write
+  0.03%   10.07ms  |               MAIN_
+  0.03%   10.07ms  |                 main
+  0.03%   10.07ms  decimal_increment
+  0.03%   10.07ms  | ED_format
+  0.03%   10.07ms  |   __fortio_format_double
+  0.03%   10.07ms  |     call_format_double
+  0.03%   10.07ms  |       fw_writenum
+  0.03%   10.07ms  |         fw_write
+  0.03%   10.07ms  |           __f90io_fmt_write
+  0.03%   10.07ms  |             pgf90io_sc_d_fmt_write
+  0.03%   10.07ms  |               MAIN_
+  0.03%   10.07ms  |                 main
+  0.03%   10.07ms  __alloc04
+  0.03%   10.07ms  | pgf90_alloc04
+  0.03%   10.07ms  |   MAIN_
+  0.03%   10.07ms  |     main
+  0.03%   10.07ms  allocate_new_fmtgbl
+  0.03%   10.07ms    _f90io_encode_fmt
+  0.03%   10.07ms      pgf90io_encode_fmt
+  0.03%   10.07ms        MAIN_
+  0.03%   10.07ms          main
+
+======== Data collected at 100Hz frequency
