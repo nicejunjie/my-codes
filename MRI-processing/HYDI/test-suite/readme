@@ -1,0 +1,40 @@
+What's in the folder: 
+
+20151120_1  20151120_2         -- two subjects 
+fsl-par_core.sh                -- the core script for parallel processing
+jobsub                         -- job script for PBS queue
+matlab_code                    -- contains neccessary matlab modules for denoise
+matlab_denoise.m               -- script to do denoise in matlab
+parallel-command-processor.c   -- MPI wrapper for parallel processing
+pcp_carbonate                  -- compiled binary of parallel-command-processor.c 
+fsl-serial.sh                  -- serial processing script  (not being used here)
+pre_process_prisma_eddy1_1.m   -- the original pipline script Sourajit wrote  (not being used here). 
+
+
+
+How it works? 
+  Inside "jobsub" is a loop that finds all subjects, then the command to be executed for each command is written to "input.txt". The parallel processing MPI wrapper takes those commands in "input.txt", distribute them among the available computing nodes.     
+
+
+Before running: 
+  1) change the director of which "matlab_code" lives in "matlab_denoise.m". 
+  2) there is no need to change other directory path in the script as long as you keep all the scripts in the same way they are now. 
+  3) change the condition of "for" loop in "jobsub", right now it find subjects that matches name "2015*", you will need to change it according to your subject folder name. 
+  4) put the "module load gcc/6.3.0" and "module load "openmpi/gnu/2.1.0" in your "~/.modules" to load those modules by default.  
+  5) the last number "6" in line f_run_LPCA('DWI.nii','DWI_d.nii',1,6);  in "matlab_denoise.m" indicates the OpenMP threads for denoise, you can adjust that according the resouce you want to use.  I found the denoise code isn't very robust,  using more than 8 threads may cause instability. 
+
+How to run: 
+  qsub jobsub
+
+
+
+
+Tips: 
+   1) The MPI wrapper would use one extra MPI rank for process management. So in test-suite, although I only have 2 subjects, I used "mpirun -np 3" in the last line of "jobsub". 
+   2) I used 6 OpenMP threads for denoise,  and there are two subjects, so I requested 12 cores by "ppn=12" in "jobsub".  You can adjust it based on what you need. 
+   
+
+
+Known issues: 
+  Very occasionally, MPI fails for very large number (~100) of ranks on Carbonate, looks like a machine stability issue.  For some of Qiuting's job, I had to run many jobs with ~20 ranks each instead of one job invoking ~100 ranks. 
+

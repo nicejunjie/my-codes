@@ -1,0 +1,33 @@
+#!/bin/bash -l
+#PBS -k o
+#PBS -l nodes=1:ppn=12
+#PBS -l vmem=60GB
+#PBS -l walltime=40:00:00    #168 336
+#PBS -N HYDI-2
+#PBS -q batch
+#PBS -V
+
+cd $PBS_O_WORKDIR
+
+###  put the following into ~/.modules
+###  module load gcc/6.3.0
+###  module load openmpi/gnu/2.1.0
+###
+
+workdir=`pwd`
+#cat $PBS_NODEFILE|uniq>hosts
+
+if [ -e input.txt ]; then  
+   rm input.txt
+fi 
+
+for i in `echo 2015*`
+do 
+  echo "cd $workdir;./fsl-par_core.sh $workdir $i" >>input.txt
+done 
+#mpirun -np 16 -npernode 8  ./pcp input.txt  
+mpirun -np 3  ./pcp_carbonate input.txt  
+
+
+
+
