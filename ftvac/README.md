@@ -1,11 +1,11 @@
-FTVAC/FTDAC code
+FTVAC/FTDAC code:
 
 Auto correlation function of velocity or dipole. 
 
 Capable of generating tranditional 1D vibrational spectra or 2D time evolution spectra. 
 
 
-OpenMP:
+*OpenMP:
 
  Using GNU compiler:
  gfortran -Ofast -march=native -fopenmp
@@ -19,7 +19,7 @@ OpenMP:
  pgf90 -fast -Mfprelaxed -mp
  real 0m50.035s
 
-OpenACC:
+*OpenACC:
 
  Using PGI compiler:
  pgf90 -fast -Mfprelaxed -acc
