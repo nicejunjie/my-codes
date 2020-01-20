@@ -15,8 +15,8 @@ Note that TeaLeaf is also available in C : https://github.com/UoB-HPC/TeaLeaf
 `Hardware:`   dual Xeon E5-2640 v2 + Tesla K20   <br/>
 `Software:`   PGI/19.4 + OpenMPI/3.1.4      <br/>
 
-`CPU RPeak` about 0.25 Tflops,  `GPU RPeak` about 1.1 Tflops   <br/>
-`GPU/CPU RPeak ratio` about 4x
+`CPU Rpeak` about 0.25 Tflops,  `GPU Rpeak` about 1.1 Tflops   <br/>
+`GPU/CPU Rpeak ratio` about 4x
 
 ### -- problem 6 (small problem) : 
 
@@ -39,7 +39,7 @@ user	0m5.536s   <br/>
 sys	0m2.320s   <br/>
 
 
-### -- problem 7 (medium size problem):   speed up 3.3x
+### -- problem 7 (medium size problem):   Speed up 3.3x
 
 **MPI 16 ranks:  
 
