@@ -2,6 +2,8 @@ The generalized ONIOM code for fragment-based ab initio molecular dynamics.
 
 Works with Gaussian Development Version H37-P. 
 
+
+
 Details of the theory can be found at:   
 
   Ab Initio Molecular Dynamics Using Recursive, Spatially Separated, Overlapping Model Subsystems Mixed within an ONIOM-Based Fragmentation Energy Extrapolation Technique
