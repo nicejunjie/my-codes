@@ -18,6 +18,10 @@ Note that TeaLeaf is also available in C : https://github.com/UoB-HPC/TeaLeaf
 `CPU Rpeak` about 0.25 Tflops,  `GPU Rpeak` about 1.1 Tflops   <br/>
 `GPU/CPU Rpeak ratio` about 4x
 
+### profile: 
+
+Sampling profile for serial run is provided in profile.txt
+
 ### -- problem 6 (small problem) : 
 
 **MPI 1 rank :**   
