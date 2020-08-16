@@ -1,11 +1,37 @@
 
-CC = gcc
-F90 = gfortran
+COMPILER = PGI
 
-OBJ = commonv.o calc_force.f90  check.f90 debug_print.f90 dist.f90 genxyz.f90 inirand.f90 initialize.f90 lowercase.f90 main.f90 move.f90 norm.f90 printstat.f90 projection.f90 readkey.f90
-TARGET = eq.x
+CC_PGI = pgcc
+FC_PGI = pgfortran
+FFLAGS_PGI = -fast -mp -Minfo=all
 
-install : $(OBJ)
-	$(F90) -o $(TARGET)  $(OBJ)
+CC_GNU = gcc
+FC_GNU = gfortran
+FFLAGS_GNU = -Ofast -fopenmp -g
+
+CC = $(CC_$(COMPILER))
+FC = $(FC_$(COMPILER))
+FFLAGS = $(FFLAGS_$(COMPILER))
+
+
+$(compiler is $(COMPILER))
+
+OBJ = commonv.o calc_force.o check.o debug_print.o dist.o genxyz.o inirand.o initialize.o lowercase.o main.o move.o norm.o printstat.o projection.o readkey.o
+
+TARGET = eqpt
+
+LIBS = 
+INCLUDE = 
+
+${TARGET} : $(OBJ) 
+	$(FC) -o $@  $^ $(FFLAGS) $(LIBS)
+
+%.o     : %.f90  $(DEPS)
+	$(FC) -c -o $@ $< $(FFLAGS)	
+
+.PHONY: clean
+
 clean :
 	rm *.o *.mod
+
+
