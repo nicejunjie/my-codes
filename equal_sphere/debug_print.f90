@@ -4,7 +4,7 @@ use commonv
 
 implicit none
 
-integer :: iopt,i,j,icoor,idist,iforce
+integer :: iopt,i,j,icoor,idist,iforce,itmp
 character(*) :: string
 character(16) :: fm
 
@@ -26,9 +26,9 @@ if(idist.ne.0) then
  print *, 'distance matrix'
  write(fm,'(a,I4,a10,a)' ) '(',N,'(F15.8,2x)',')'
  do i =1 ,n 
-   print fm, (dist_matrix(i,j),j=1,i)
+   itmp=i*(i-1)/2
+   print fm, (dist_matrix(itmp+j),j=1,i)
  end do
-!print '(3(F15.8,2x))',dist_matrix(2,1),dist_matrix(3,1),dist_matrix(3,2)
 end if
 
 if(iforce.ne.0)  then

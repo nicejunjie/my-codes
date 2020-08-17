@@ -12,17 +12,17 @@ implicit none
 
 
 call initialize()
-call genxyz()
 
 do 
+
  call calc_force()
  call dist()
  call check()
+ if((iok.eq.1).or.(istep.ge.maxstep)) exit
  call move()
- call norm()
- if((iok.eq.1).or.(istep.gt.maxstep)) exit
- if(iop.ne.0) print '(a11,2x,I10,a14,2x,I10)', 'step number',istep, 'out of maxstep', maxstep
+
  istep = istep + 1
+
 enddo
 
 call print_stat()

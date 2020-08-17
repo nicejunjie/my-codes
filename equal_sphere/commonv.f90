@@ -1,13 +1,14 @@
 module commonv
 real(8) :: threshold = 1d-4, &
            stepsize  = 1d-1, &
-           radius    = 1d0
+           radius    = 1d0 , & 
+           energy    = 0.0d0
 integer :: N     , &
            istep = 0, &
            iok   = 0 , &
            iop   = 0 , &
            Maxstep = 1000000
-real(8),allocatable :: dist_matrix(:,:), coor(:,:), force(:,:)
+real(8),allocatable :: dist_matrix(:), coor(:,:), force(:,:)
 end module commonv
 
 

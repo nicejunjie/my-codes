@@ -1,5 +1,5 @@
 
-COMPILER = PGI
+COMPILER = GNU
 
 CC_PGI = pgcc
 FC_PGI = pgfortran
@@ -7,7 +7,7 @@ FFLAGS_PGI = -fast -mp -Minfo=all
 
 CC_GNU = gcc
 FC_GNU = gfortran
-FFLAGS_GNU = -Ofast -fopenmp -g
+FFLAGS_GNU =  -Ofast -fopenmp -g
 
 CC = $(CC_$(COMPILER))
 FC = $(FC_$(COMPILER))
@@ -32,6 +32,6 @@ ${TARGET} : $(OBJ)
 .PHONY: clean
 
 clean :
-	rm *.o *.mod
+	rm *.o *.mod $(TARGET)
 
 
